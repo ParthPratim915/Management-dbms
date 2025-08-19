@@ -14,6 +14,14 @@ The parts table catalogs spare parts available for vehicle maintenance and repai
 
 The database enforces data integrity and consistency through primary and foreign key constraints reflecting real-world dependencies—for example, a vehicle cannot exist without an associated model, and a sale cannot reference a non-existent customer or employee. This relational structure ensures reliable and meaningful data throughout.
 
-Three stored procedures are provided to simplify common operations. AddVehicle streamlines adding new vehicles into inventory; RecordSale handles sales recording and automatically updates vehicle status to sold, improving operational efficiency; and ShowAvailableVehiclesByManufacturer allows querying inventory availability by manufacturer, supporting sales priorities and stock management.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Three stored procedures are provided to simplify common operations. AddVehicle streamlines adding new vehicles into inventory; RecordSale handles sales recording and automatically updates vehicle status to sold, improving operational efficiency; and ShowAvailableVehiclesByManufacturer allows querying inventory availability by manufacturer, supporting sales priorities and stock management:
+
+1. AddVehicle: This procedure inserts a new vehicle into the vehicles table. You provide details such as model ID, VIN, color, price, and status as inputs; when called, it runs an SQL INSERT using those parameters, efficiently adding a new record.
+
+2. RecordSale: This procedure registers a sale by inserting a record into the sales table, then updates the corresponding vehicle's status to 'Sold.' It takes vehicle, customer, employee, sale date, and price as input, combining multiple SQL actions in one call for transaction tracking.
+
+3. ShowAvailableVehiclesByManufacturer: This procedure retrieves vehicles that are currently 'Available,' filtering results by the provided manufacturer ID. It uses a JOIN across vehicles and models to produce the inventory matching ownership and status criteria.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Overall, the design of this database supports scalability, data accuracy, and operational clarity for a vehicle company managing manufacturing, sales, service, and parts inventory. It offers a structured foundation to expand functionality, such as integrating finance, marketing, or advanced analytics modules, making it a robust solution for modern automotive businesses.
